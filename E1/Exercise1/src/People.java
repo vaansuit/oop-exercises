@@ -1,37 +1,45 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class People {
 
     private String name;
-    private Date birthDate;
+    private static LocalDate dateOfBirth;
     private double height;
 
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-    public String getName() {
-        return name;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public double getHeight() {
-        return height;
+    public String getName() {
+        return name;
     }
 
     public void setHeight(double height) {
         this.height = height;
     }
-
-    public void calculateAge(Date birthDate) {
-        
+    public double getHeight() {
+        return height;
     }
+
+    public static int calculateAge() {
+        LocalDate currentDate = LocalDate.now();
+
+        if(dateOfBirth != null && currentDate != null) {
+            return Period.between(dateOfBirth, currentDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+
+
+
 }
